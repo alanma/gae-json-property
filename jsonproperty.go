@@ -8,8 +8,6 @@ import (
 
 type JsonProperty map[string]interface{}
 
-var jsonPropertyType = reflect.TypeOf(JsonProperty{})
-
 // entity must be a pointer to a struct
 func LoadJsonProperties(entity interface{}, c <-chan datastore.Property) (<-chan datastore.Property, error) {
 	jsonProperties := map[string]reflect.Value{} // {name: value}
@@ -59,6 +57,8 @@ func SaveJsonProperties(entity interface{}, c chan<- datastore.Property) (chan<-
 
 	return c, nil
 }
+
+var jsonPropertyType = reflect.TypeOf(JsonProperty{})
 
 func nameFromField(f reflect.StructField) string {
 	if name := f.Tag.Get("jsonproperty"); name != "" {
