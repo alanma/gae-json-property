@@ -19,7 +19,7 @@ func LoadJsonProperties(entity interface{}, c <-chan datastore.Property) (<-chan
 	for i := 0; i < value.NumField(); i++ {
 		value2 := value.Field(i)
 		if value2.Type() == jsonPropertyType {
-			jsonProperties[nameFromField(*value.Type().Field(i))] = value2
+			jsonProperties[nameFromField(&value.Type().Field(i))] = value2
 		}
 	}
 
@@ -51,7 +51,7 @@ func SaveJsonProperties(entity interface{}, c chan<- datastore.Property) (chan<-
 				return c, err
 			}
 			c <- datastore.Property{
-				Name:  nameFromField(*value.Type().Field(i)),
+				Name:  nameFromField(&value.Type().Field(i)),
 				Value: string(bytes),
 			}
 		}
