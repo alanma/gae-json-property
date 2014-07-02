@@ -61,7 +61,7 @@ func SaveJsonProperties(entity interface{}, c chan<- datastore.Property) (chan<-
 }
 
 func nameFromValue(f *reflect.Value) string {
-	if name := f.Tag.Get("jsonproperty"); name != "" {
+	if name := *f.Tag.Get("jsonproperty"); name != "" {
 		return name
 	}
 	return f.Name
