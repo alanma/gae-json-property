@@ -42,5 +42,5 @@ func (person *Person) Save(c chan<- datastore.Property) error {
 
 It saves the property as a `string` in the datastore but converts it to a `map[string]interface{}`
 on load.  In order to work, the normal datastore `LoadStruct()` and `SaveStruct()` have to know to
-ignore it via the datastore tag `datastore:"-"`.  For more details see the
-[example](./example/app.go).
+ignore it via the datastore tag `datastore:"-"`.  For more details see the [example
+app](./example/app.go).
